@@ -1,0 +1,25 @@
+.box {
+    width: 600px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+#login-title {
+    color: white;
+    margin: 0;
+}
+
+.btn-action {
+    margin: 10px;
+}
+
+.btn-action a {
+    padding: 5px;
+}
+
+.btn-action a:hover {
+    cursor: pointer;
+    color: rgb(255, 72, 0);
+}
