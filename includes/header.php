@@ -39,14 +39,13 @@ if (isset($_GET['art_id'])) {
 <body>
     <div id="top">
         <div class="container">
-
             <div class="col-md-6 offer">
                 <a href="#" class="btn btn-success btn-sm">
                     <?php
-                    if (!isset($_SESSION['client_email'])) {
-                        echo "Bienvenue : Utilisateur";
+                    if (!isset($_SESSION['log_nom'])) {
+                        echo "Bienvenue : " + $_SESSION['log_nom'];
                     } else {
-                        echo "Bienvenue: " . $_SESSION['client_email'] . "";
+                        echo "Bienvenue: " . $_SESSION['log_nom'] . "";
                     }
                     ?>
                 </a>
