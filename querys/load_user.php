@@ -17,9 +17,9 @@ foreach ($resulat as $row) {
     $current_time = date('Y-m-d H:i:s', $current_time);
     $user_lastActivity = load_user_last_activity($row['id_log'], $conn);
     if ($user_lastActivity > $current_time) {
-        $status = '<span class="text-success">En ligne</span>';
+        $status = '<small class="text-success">En ligne</small>';
     } else {
-        $status = '<span class="text-danger">Pas Connecté(e)</span>';
+        $status = '<small class="text-danger">Pas Connecté(e)</small>';
     }
     $output .= '
         <tr>

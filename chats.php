@@ -150,82 +150,22 @@ if (isset($_POST['create'])) {
                 <div class="col-lg-3">
                     <div class="boxchat">
                         <div class="box-header">
-                            <h2 id="login-title">Créer un Compte</h2> <span class="<?php echo $classe; ?>">
-                                <?php echo $message; ?> </span>
+                            <h3 id="chat-title" class="text-center"><span id="user_name"> Chat
+                                </span></h3>
                         </div>
-                        <form action="#" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nom</label>
-                                        <input type="text" autocomplete="off" class="form-control" name="u_name"
-                                            required="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 ">
-                                    <div class="form-group">
-                                        <label>E-mail</label>
-                                        <input type="email" autocomplete="off" class="form-control" name="u_email"
-                                            required="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Mot de passe</label>
-                                        <input type="password" class="form-control" name="u_pass" id="u_pass"
-                                            required="" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Pays</label>
-                                        <select name="u_pays" id="u_pays" class="form-control">
-                                            <optgroup label="Afrique Centrale">
-                                                <option value="République Démocratique du Congo">République Démocratique
-                                                    du
-                                                    Congo</option>
-                                                <option value="République Central Afrique">République Central Afrique
-                                                </option>
-                                                <option value="Congo Brazzaville">Congo Brazzaville</option>
-                                            </optgroup>
-                                            <optgroup label="Afriquer de L'Est">
-                                                <option value="Burundi">Burundi</option>
-                                                <option value="Rwanda">Rwanda</option>
-                                                <option value="Kenya">Kenya</option>
-                                            </optgroup>
-                                        </select>
-                                        <!--<input type="text" class="form-control" name="u_pays" required></input>-->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Ville</label>
-                                <input type="text" name="u_ville" id="u_ville" required="" autocomplete="off"
-                                    class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label>Tes contacts</label>
-                                <input type="text" class="form-control" name="u_contacts" required="" autocomplete="" />
-                            </div>
-                            <div class="form-group">
-                                <label>Adresse</label>
-                                <input type="text" class="form-control" name="u_adress" required="" autocomplete="" />
-                            </div>
-                            <div class="form-group">
-                                <label>Photo de Profil</label>
-                                <input type="file" class="form-control form-height-customer" name="u_image" required=""
-                                    autocomplete="" />
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" name="create" class="btn btn-primary"><i
-                                        class="glyphicon glyphicon-ok"></i>
-                                    Enregistrer</button>
-                            </div>
-                        </form>
+                        <center> <img src="images/avatar.png" alt="" class="img img-circle text-center" width="150">
+                        </center><br>
+                        <ul class="list-unstyled">
+                            <li><label>E-mail</label> : exemple@gmail.com</li>
+                            <li><label>Pays</label> : République Démocratique du Congo</li>
+                            <li><label>Ville</label> : Goma</li>
+                            <li><label>Adresse</label> : Q. Virunga Av. Bumba</li>
+                            <li><label>Contacts</label> : +243 997 235 842</li>
+                        </ul>
+
                     </div>
                 </div>
+                <hr>
             </div>
         </div>
     </div>
@@ -330,6 +270,7 @@ if (isset($_POST['create'])) {
 
         function chat_dialog_box(to_user_id, to_user_name) {
             $("#user").html("Chat with " + to_user_name);
+            $("#user_name").html(to_user_name);
             var modal_content = '<div id="user_dialog_' + to_user_id +
                 '" class="user_dialog">';
             modal_content +=
@@ -346,48 +287,48 @@ if (isset($_POST['create'])) {
             modal_content +=
                 '<div class="form-group" align="right"><button type="button" name="send_chat" id="' +
                 to_user_id +
-                '"class="btn btn-info send_chat">Envoyer</button></div></div>';
+                '"class="btn btn-primary send_chat">Envoyer <i class="fa fa-send"></i></button></div></div>';
             $("#user_model_details").html(modal_content);
         }
 
-        $(document).on('click', '.start_chat', function() {
-            var to_user_id = $(this).data('touserid');
-            var to_user_name = $(this).data('tousername');
+        $(document).on("click", ".start_chat", function() {
+            var to_user_id = $(this).data("touserid");
+            var to_user_name = $(this).data("tousername");
             chat_dialog_box(to_user_id, to_user_name);
-            $('#user_dialog_'.to_user_id).dialog({
+            $("#user_dialog_".to_user_id).dialog({
                 autoOpen: false,
                 width: 400
             });
 
-            $('#user_dialog_' + to_user_id).dialog('open');
+            $("#user_dialog_" + to_user_id).dialog("open");
         });
 
-        $(document).on('click', '.send_chat', function() {
-            var to_user_id = $(this).attr('id');
-            var chat_message = $('#chat_message_' + to_user_id).val();
+        $(document).on("click", ".send_chat", function() {
+            var to_user_id = $(this).attr("id");
+            var chat_message = $("#chat_message_" + to_user_id).val();
             $.ajax({
-                url: 'querys/insert_chat.php',
-                method: 'POST',
+                url: "querys/insert_chat.php",
+                method: "POST",
                 data: {
                     to_user_id: to_user_id,
                     chat_message: chat_message
                 },
                 success: function(data) {
-                    $('#chat_message_' + to_user_id).val('');
-                    $('#chat_history_' + to_user_id).html(data);
+                    $("#chat_message_" + to_user_id).val("");
+                    $("#chat_history_" + to_user_id).html(data);
                 }
             });
         });
 
         function chat_real_time(to_user_id) {
             $.ajax({
-                url: 'querys/chat_real_time.php',
-                method: 'POST',
+                url: "querys/chat_real_time.php",
+                method: "POST",
                 data: {
                     to_user_id: to_user_id
                 },
                 success: function(data) {
-                    $('#chat_history_' + to_user_id).html(data);
+                    $("#chat_history_" + to_user_id).html(data);
                 }
             });
 
