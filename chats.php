@@ -123,7 +123,7 @@ if (isset($_POST['create'])) {
     <div id="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="boxchat">
                         <div class="box-header">
                             <h2 id="chat-title">Contacts</h2>
@@ -133,7 +133,7 @@ if (isset($_POST['create'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="boxchat">
                         <div class="box-header">
                             <h4 id="chat-title"><span id="user"> Chat </span></h4>
@@ -336,7 +336,7 @@ if (isset($_POST['create'])) {
                 '<div style="height:300px; border:1px solid #ccc; overflow-y:scroll; margin-bottom:24px; padding:16px;" class="chat_history" data-touserid="' +
                 to_user_id + '" id="chat_history_' + to_user_id + '">';
 
-            //modal_content += chat_real_time(to_user_id);
+            modal_content += chat_real_time(to_user_id);
 
             modal_content += '</div>';
             modal_content += '<div class="form-goup">';
@@ -366,7 +366,7 @@ if (isset($_POST['create'])) {
             var to_user_id = $(this).attr('id');
             var chat_message = $('#chat_message_' + to_user_id).val();
             $.ajax({
-                url: 'insert_chat.php',
+                url: 'querys/insert_chat.php',
                 method: 'POST',
                 data: {
                     to_user_id: to_user_id,
@@ -381,7 +381,7 @@ if (isset($_POST['create'])) {
 
         function chat_real_time(to_user_id) {
             $.ajax({
-                url: 'chat_real_time.php',
+                url: 'querys/chat_real_time.php',
                 method: 'POST',
                 data: {
                     to_user_id: to_user_id
@@ -394,8 +394,8 @@ if (isset($_POST['create'])) {
         }
 
         function update_chat_history() {
-            $('.chat_history').each(function() {
-                var to_user_id = $(this).data('touserid');
+            $(".chat_history").each(function() {
+                var to_user_id = $(this).data("touserid");
                 chat_real_time(to_user_id);
             });
         }

@@ -7,7 +7,8 @@ $statement->execute();
 $resulat = $statement->fetchAll();
 
 $output = '
-    <table class="table ">          
+    <div style="height:470px; overflow-y:scroll;">
+    <table class="table">
 ';
 
 foreach ($resulat as $row) {
@@ -18,7 +19,7 @@ foreach ($resulat as $row) {
     if ($user_lastActivity > $current_time) {
         $status = '<span class="text-success">En ligne</span>';
     } else {
-        $status = '<span class="text-danger">Pas Connecté (e)</span>';
+        $status = '<span class="text-danger">Pas Connecté(e)</span>';
     }
     $output .= '
         <tr>
@@ -31,5 +32,5 @@ foreach ($resulat as $row) {
         </tr>
     ';
 }
-$output .= '</table>';
+$output .= '</table> </div>';
 echo $output;
