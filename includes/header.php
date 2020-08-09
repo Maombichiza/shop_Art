@@ -40,15 +40,7 @@ if (isset($_GET['art_id'])) {
     <div id="top">
         <div class="container">
             <div class="col-md-6 offer">
-                <a href="#" class="btn btn-success btn-sm">
-                    <?php
-                    if (!isset($_SESSION['log_nom'])) {
-                        echo "Bienvenue : " + $_SESSION['log_nom'];
-                    } else {
-                        echo "Bienvenue: " . $_SESSION['log_nom'] . "";
-                    }
-                    ?>
-                </a>
+                <a href="login.php" class="btn btn-success btn-sm">Connexion</a>
                 <a href="panier.php"><?php articles(); ?> article dans votre panier | Prix Total:
                     <?php prix_totals(); ?> </a>
             </div>

@@ -4,8 +4,8 @@ include('includes/connxion_pdo.php');
 session_start();
 $message = '';
 
-if (isset($_SESSION['user_id'])) {
-    header('location:index.php');
+if (isset($_SESSION['users_id'])) {
+    header('location:index2.php');
 }
 
 if (isset($_POST['login'])) {
@@ -17,7 +17,7 @@ if (isset($_POST['login'])) {
         $result = $statement->fetchAll();
         foreach ($result as $row) {
             if ($_POST['u_pass'] == $row['log_password']) {
-                $_SESSION['user_id'] = $row['id_log'];
+                $_SESSION['users_id'] = $row['id_log'];
                 $_SESSION['user_name'] = $row['log_nom'];
                 $_SESSION['user_email'] = $row['log_email'];
                 $_SESSION['user_photo'] = $row['log_photo'];
@@ -25,7 +25,7 @@ if (isset($_POST['login'])) {
                 $statement = $conn->prepare($subquery);
                 $statement->execute();
                 $_SESSION['login_detail_id'] = $conn->lastInsertId();
-                header('location:index.php');
+                header('location:index2.php');
             } else {
                 $message = '<label>Mot de passe Incorrect.</label>';
             }
